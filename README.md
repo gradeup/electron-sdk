@@ -11,7 +11,7 @@ npm install @gradeup/electron-sdk
 ## Usage
 
 ```js
-import Electron from "./index.js";
+import Electron from "@gradeup/electron-sdk";
 const e1 = new Electron("url", "token");
 
 async function prep() {

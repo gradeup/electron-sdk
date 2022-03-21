@@ -1,0 +1,23 @@
+{
+  "name": "@gradeup/electron-sdk",
+  "version": "1.0.0",
+  "description": "sdk for electron media server",
+  "main": "index.js",
+  "repository": "gradeup/electron-sdk",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": {
+    "name": "Vikas Kumar",
+    "email": "svikas641@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

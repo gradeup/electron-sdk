@@ -11,15 +11,20 @@ npm install @gradeup/electron-sdk
 ## Usage
 
 ```js
-import Electron from "@gradeup/electron-sdk";
-const e1 = new Electron("url", "token");
+const {
+  prepareStream,
+  getStream,
+  liveStream,
+  resetStream,
+  stopStream,
+} = require('./index.js');
 
-async function prep() {
-  const r = await e1.prepareStream();
-  console.log(r);
-}
+const fetchData = async () => {
+  const resp = await prepareStream('token', 'url');
+  console.log(resp);
+};
 
-prep();
+fetchData();
 ```
 
 ## License

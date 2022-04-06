@@ -1,122 +1,115 @@
-import fetch from "node-fetch";
+const request = require('request');
+const rp = require('request-promise');
 
-class Electron {
-  constructor(url, token) {
-    this.url = url;
-    this.token = token;
+async function prepareStream(token, url) {
+  var options = {
+    uri: `${url}/stream`,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
+
+  let body;
+
+  try {
+    body = await rp(options);
+  } catch (error) {
+    throw error;
   }
 
-  async prepareStream() {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    let body = {};
-
-    try {
-      const response = await fetch(`${this.url}/stream`, requestOptions);
-      body = await response.json();
-    } catch (error) {
-      throw error;
-    }
-
-    return body;
-  }
-
-  async getStream(streamId) {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    let body = {};
-
-    try {
-      const response = await fetch(
-        `${this.url}/stream/${streamId}`,
-        requestOptions
-      );
-      body = await response.json();
-    } catch (error) {
-      throw error;
-    }
-
-    return body;
-  }
-
-  async liveStream(streamId) {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    let body = {};
-
-    try {
-      const response = await fetch(
-        `${this.url}/stream/${streamId}/live`,
-        requestOptions
-      );
-      body = await response.json();
-    } catch (error) {
-      throw error;
-    }
-
-    return body;
-  }
-
-  async resetStream(streamId) {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    let body = {};
-
-    try {
-      const response = await fetch(
-        `${this.url}/stream/${streamId}/reset`,
-        requestOptions
-      );
-      body = await response.json();
-    } catch (error) {
-      throw error;
-    }
-
-    return body;
-  }
-
-  async stopStream(streamId) {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    let body = {};
-
-    try {
-      const response = await fetch(
-        `${this.url}/stream/${streamId}/stop`,
-        requestOptions
-      );
-      body = await response.json();
-    } catch (error) {
-      throw error;
-    }
-
-    return body;
-  }
+  return body;
 }
 
-export default Electron;
+async function getStream(token, url, streamId) {
+  var options = {
+    uri: `${url}/stream/${streamId}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
+
+  let body;
+
+  try {
+    body = await rp(options);
+  } catch (error) {
+    throw error;
+  }
+
+  return body;
+}
+
+async function liveStream(token, url, streamId) {
+  var options = {
+    uri: `${url}/stream/${streamId}/live`,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
+
+  let body;
+
+  try {
+    body = await rp(options);
+  } catch (error) {
+    throw error;
+  }
+
+  return body;
+}
+
+async function resetStream(token, url, streamId) {
+  var options = {
+    uri: `${url}/stream/${streamId}/reset`,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
+
+  let body;
+
+  try {
+    body = await rp(options);
+  } catch (error) {
+    throw error;
+  }
+
+  return body;
+}
+
+async function stopStream(token, url, streamId) {
+  var options = {
+    uri: `${url}/stream/${streamId}/stop`,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
+
+  let body;
+
+  try {
+    body = await rp(options);
+  } catch (error) {
+    throw error;
+  }
+
+  return body;
+}
+
+module.exports = {
+  prepareStream,
+  getStream,
+  liveStream,
+  stopStream,
+  resetStream,
+};

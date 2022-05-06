@@ -1,6 +1,6 @@
 {
   "name": "@gradeup/electron-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "sdk for electron media server",
   "main": "index.js",
   "repository": "gradeup/electron-sdk",
